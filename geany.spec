@@ -1,6 +1,6 @@
 %define name 	geany
 %define cname	Geany
-%define version	0.10.2
+%define version	0.11
 %define release	1
 
 Summary:	Geany is a small C editor using GTK2
@@ -92,5 +92,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_menudir}/%{name}
-
 
