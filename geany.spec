@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_defaultdocdir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}.ico
-%{_mandir}/man1/%{name}.1.bz2
+%{_mandir}/man1/%{name}.*
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
