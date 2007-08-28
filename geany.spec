@@ -51,7 +51,6 @@ cat > $RPM_BUILD_ROOT%{_menudir}/%{name} <<EOF
 	xdg="true"
 EOF
 
-perl -pi -e 's/Encoding=UTF-8//' $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
 
 desktop-file-install --vendor="" \
 	--remove-category="Application" \
