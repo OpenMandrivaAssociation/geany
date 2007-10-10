@@ -1,6 +1,6 @@
 %define name 	geany
 %define cname	Geany
-%define version	0.11
+%define version	0.12
 %define release	1
 
 Summary:	Geany is a small C editor using GTK2
@@ -51,20 +51,28 @@ cat > $RPM_BUILD_ROOT%{_menudir}/%{name} <<EOF
 	xdg="true"
 EOF
 
-
+# we remove the key "Version" and "Encoding" because it's invalid
 desktop-file-install --vendor="" \
 	--remove-category="Application" \
 	--add-category="GNOME" \
 	--add-category="GTK" \
 	--add-category="Development" \
 	--add-category="X-MandrivaLinux-MoreApplications-Development-DevelopmentEnvironments" \
+	--remove-key="Version" \
+	--remove-key="Encoding" \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+
+# we remove the extention of Icon
+perl -i -pe 's/\.png//' %{_datadir}/applications/%{name}.desktop
 
 # prepare icons
 mkdir -p %{buildroot}%{_miconsdir} %{buildroot}%{_iconsdir} %{buildroot}%{_liconsdir}
 convert pixmaps/%{name}.png -geometry 16x16 %{buildroot}%{_miconsdir}/%{name}.png
 convert pixmaps/%{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/%{name}.png
 convert pixmaps/%{name}.png -geometry 48x48 %{buildroot}%{_liconsdir}/%{name}.png
+
+# remove useless file
+rm %{buildroot}%{_iconsbasedir}/icon-theme.cache
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -79,14 +87,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING INSTALL NEWS README THANKS TODO
 %{_bindir}/%{name}
+%{_libdir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}
 %{_defaultdocdir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}.ico
 %{_mandir}/man1/%{name}.*
+%{_icons16dir}/*
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
