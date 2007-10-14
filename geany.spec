@@ -73,7 +73,7 @@ convert pixmaps/%{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/%{name}.png
 convert pixmaps/%{name}.png -geometry 48x48 %{buildroot}%{_liconsdir}/%{name}.png
 
 # remove useless file
-rm %{buildroot}%{_iconsbasedir}/icon-theme.cache
+rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
 
 %clean
 rm -rf $RPM_BUILD_ROOT
