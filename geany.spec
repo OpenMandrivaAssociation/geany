@@ -79,6 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}.ico
 %{_mandir}/man1/%{name}.*
+%{_datadir}/icons/hicolor/16x16/apps/*
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
