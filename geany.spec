@@ -41,30 +41,13 @@ rm -rf $RPM_BUILD_ROOT
 %find_lang %{name}
 
 # prepare menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat > $RPM_BUILD_ROOT%{_menudir}/%{name} <<EOF
-?package(%name): needs="x11" \
-	section="More Applications/Development/Development Environments" \
-	title=%{cname} \
-	longtitle="Small C editor using GTK2" \
-	command="%{_bindir}/%{name}" \
-	icon="%{name}.png" \
-	xdg="true"
-EOF
-
 # we remove the key "Version" and "Encoding" because it's invalid
 desktop-file-install --vendor="" \
 	--remove-category="Application" \
 	--add-category="GNOME" \
-	--add-category="GTK" \
-	--add-category="Development" \
-	--add-category="X-MandrivaLinux-MoreApplications-Development-DevelopmentEnvironments" \
 	--remove-key="Version" \
 	--remove-key="Encoding" \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-
-# we remove the extention of Icon
-perl -i -pe 's/\.png//' %{_datadir}/applications/%{name}.desktop
 
 # prepare icons
 mkdir -p %{buildroot}%{_miconsdir} %{buildroot}%{_iconsdir} %{buildroot}%{_liconsdir}
@@ -96,9 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/pixmaps/%{name}.ico
 %{_mandir}/man1/%{name}.*
-%{_icons16dir}/*
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-%{_menudir}/%{name}
-
