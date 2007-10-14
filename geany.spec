@@ -1,7 +1,7 @@
 %define name 	geany
 %define cname	Geany
 %define version	0.12
-%define release	1
+%define release	2
 
 Summary:	Geany is a small C editor using GTK2
 Name: 		%{name}
