@@ -82,3 +82,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
+%{_iconsdir}/hicolor/*/apps/*
