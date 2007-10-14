@@ -16,6 +16,7 @@ BuildRequires:  pkgconfig
 BuildRequires:  gtk2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  ImageMagick
+BuildRequires:  perl-XML-Parser
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
