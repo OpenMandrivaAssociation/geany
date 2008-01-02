@@ -11,6 +11,7 @@ License: 	GPL
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
 Source0: 	%{name}-%{version}.tar.bz2
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pkgconfig
 BuildRequires:  gtk2-devel
 BuildRequires:  desktop-file-utils
