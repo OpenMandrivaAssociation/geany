@@ -3,7 +3,7 @@
 %define version	0.13
 %define release	1
 
-Summary:	Geany is a small C editor using GTK2
+Summary:	Small C editor using GTK2
 Name: 		%{name}
 Version: 	%{version}
 Release: 	%mkrel %{release}
