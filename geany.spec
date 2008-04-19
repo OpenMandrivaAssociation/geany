@@ -1,6 +1,6 @@
 %define name 	geany
 %define cname	Geany
-%define version	0.13
+%define version	0.14
 %define release	1
 
 Summary:	Small C editor using GTK2
@@ -72,7 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(-,root,root,-)
 %{_bindir}/%{name}
+%{_includedir}/%{name}
 %{_libdir}/%{name}
+%{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}
 %{_defaultdocdir}/%{name}
