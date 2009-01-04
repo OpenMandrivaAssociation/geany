@@ -1,6 +1,6 @@
 %define name 	geany
 %define cname	Geany
-%define version	0.14
+%define version	0.15
 %define release	1
 
 Summary:	Small C editor using GTK2
@@ -21,7 +21,7 @@ Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
 %description
-Geany is a small C editor using GTK2 with basic features of an 
+Geany is a small C editor using GTK2 with basic features of an
 integrated development environment. It features syntax highlighting,
 code completion, call tips, many supported filetypes (including C,
 Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
@@ -62,7 +62,7 @@ rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
 rm -rf $RPM_BUILD_ROOT
 
 %if %mdkversion < 200900
-%post 
+%post
 %{update_desktop_database}
 %{update_menus}
 %endif
