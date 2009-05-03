@@ -1,16 +1,22 @@
 %define name 	geany
 %define cname	Geany
-%define version	0.16
+%define version	0.17
 %define release	1
 
 Summary:	Small C editor using GTK2
 Name: 		%{name}
 Version: 	%{version}
 Release: 	%mkrel %{release}
-License: 	GPL
+License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
-Source0: 	%{name}-%{version}.tar.bz2
+Source0: 	http://download.geany.org/%{name}-%{version}.tar.bz2
+# The following tags files were retrieved 3 May 2009
+Source1:	http://download.geany.org/contrib/tags/sqlite3.c.tags
+Source2:	http://download.geany.org/contrib/tags/std.glsl.tags
+Source3:	http://download.geany.org/contrib/tags/gtk216.c.tags
+Source4:	http://download.geany.org/contrib/tags/xfce46.c.tags
+Source5:	http://download.geany.org/contrib/tags/dbus-glib-0.76.c.tags
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pkgconfig
 BuildRequires:  gtk2-devel
@@ -55,6 +61,9 @@ mkdir -p %{buildroot}%{_miconsdir} %{buildroot}%{_iconsdir} %{buildroot}%{_licon
 convert pixmaps/%{name}.png -geometry 16x16 %{buildroot}%{_miconsdir}/%{name}.png
 convert pixmaps/%{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/%{name}.png
 convert pixmaps/%{name}.png -geometry 48x48 %{buildroot}%{_liconsdir}/%{name}.png
+
+# Install tags files
+install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 # remove useless file
 rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
