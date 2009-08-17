@@ -1,6 +1,6 @@
 %define name 	geany
 %define cname	Geany
-%define version	0.17
+%define version	0.18
 %define release	1
 
 Summary:	Small C editor using GTK2
@@ -11,12 +11,15 @@ License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
 Source0: 	http://download.geany.org/%{name}-%{version}.tar.bz2
-# The following tags files were retrieved 3 May 2009
+# The following tags files were retrieved 17 Aug 2009
 Source1:	http://download.geany.org/contrib/tags/sqlite3.c.tags
 Source2:	http://download.geany.org/contrib/tags/std.glsl.tags
 Source3:	http://download.geany.org/contrib/tags/gtk216.c.tags
 Source4:	http://download.geany.org/contrib/tags/xfce46.c.tags
 Source5:	http://download.geany.org/contrib/tags/dbus-glib-0.76.c.tags
+Source6:	http://download.geany.org/contrib/tags/geany-api-0.18.c.tags
+Source7:	http://download.geany.org/contrib/tags/standard.css.tags
+Source8:	http://download.geany.org/contrib/tags/std.vala.tags
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pkgconfig
 BuildRequires:  gtk2-devel
@@ -56,12 +59,6 @@ desktop-file-install --vendor="" \
 	--remove-key="Encoding" \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
-# prepare icons
-mkdir -p %{buildroot}%{_miconsdir} %{buildroot}%{_iconsdir} %{buildroot}%{_liconsdir}
-convert pixmaps/%{name}.png -geometry 16x16 %{buildroot}%{_miconsdir}/%{name}.png
-convert pixmaps/%{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/%{name}.png
-convert pixmaps/%{name}.png -geometry 48x48 %{buildroot}%{_liconsdir}/%{name}.png
-
 # Install tags files
 install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/%{name}
 
@@ -92,10 +89,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}
 %{_defaultdocdir}/%{name}
-%{_datadir}/pixmaps/%{name}.png
 %{_mandir}/man1/%{name}.*
 %{_datadir}/icons/hicolor/16x16/apps/*
-%{_miconsdir}/%{name}.png
-%{_iconsdir}/%{name}.png
-%{_liconsdir}/%{name}.png
 %{_iconsdir}/hicolor/*/apps/*
