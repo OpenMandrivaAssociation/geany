@@ -60,7 +60,7 @@ desktop-file-install --vendor="" \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 # Install tags files
-install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/%{name}
+install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 # remove useless file
 rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
