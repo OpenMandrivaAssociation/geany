@@ -1,6 +1,6 @@
 %define name 	geany
 %define cname	Geany
-%define version	0.18
+%define version	0.18.1
 %define release	1
 
 Summary:	Small C editor using GTK2
