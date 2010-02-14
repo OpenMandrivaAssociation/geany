@@ -90,5 +90,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_defaultdocdir}/%{name}
 %{_mandir}/man1/%{name}.*
-%{_datadir}/icons/hicolor/16x16/apps/*
 %{_iconsdir}/hicolor/*/apps/*
