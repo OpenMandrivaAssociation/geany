@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 
 #Fix for Russian
 
-sed 's/Name\[ru\]=Geany/Name\[ru\]=Среда разработки Geany/g' -i %buildroot%_desktopdir/geany.desktop
+sed 's/Name\[ru\]=Geany/Name\[ru\]=Среда разработки Geany/g' -i %buildroot%{_datadir}/applications/geany.desktop
 mkdir -p  %buildroot%_defaultdocdir/%name/html/ru/
 install -Dpm 0644 %SOURCE9 %buildroot%_defaultdocdir/%name/html/ru/
 tar -xjvf %SOURCE10
