@@ -1,7 +1,9 @@
 %define name 	geany
 %define cname	Geany
 %define version	0.20
-%define release	1
+%define release	2
+#for educational needs
+%define edm 0
 
 Summary:	Small C editor using GTK2
 Name: 		%{name}
@@ -20,6 +22,11 @@ Source5:	http://download.geany.org/contrib/tags/dbus-glib-0.76.c.tags
 Source6:	http://download.geany.org/contrib/tags/geany-api-0.18.c.tags
 Source7:	http://download.geany.org/contrib/tags/standard.css.tags
 Source8:	http://download.geany.org/contrib/tags/std.vala.tags
+Source9: 	index.html
+Source10: 	images.tar.bz2
+Patch0:		001_geany_qb_fb.patch
+Patch1:		002_geany_hugs98.patch
+Patch2:		ru_doc.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pkgconfig
 BuildRequires:  gtk2-devel
@@ -29,6 +36,7 @@ BuildRequires:  perl-XML-Parser
 BuildRequires:  intltool
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
+Suggests:	geany-plugins
 
 %description
 Geany is a small C editor using GTK2 with basic features of an
@@ -38,6 +46,11 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 
 %prep
 %setup -q
+%if %edm
+%patch0 -p0
+%patch1 -p0
+%endif
+%patch2 -p1
 
 %build
 %configure2_5x
@@ -46,6 +59,14 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall
+
+#Fix for Russian
+
+sed 's/Name\[ru\]=Geany/Name\[ru\]=Среда разработки Geany/g' -i %buildroot%_desktopdir/geany.desktop
+mkdir -p  %buildroot%_defaultdocdir/%name/html/ru/
+install -Dpm 0644 %SOURCE9 %buildroot%_defaultdocdir/%name/html/ru/
+tar -xjvf %SOURCE10
+mv images %buildroot%_defaultdocdir/%name/html/ru/
 
 # research locale file
 %find_lang %{name}
