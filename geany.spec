@@ -1,9 +1,9 @@
 %define name 	geany
 %define cname	Geany
 %define version	0.20
-%define release	2
+%define release	3
 #for educational needs
-%define edm 0
+%define edm 1
 
 Summary:	Small C editor using GTK2
 Name: 		%{name}
@@ -22,10 +22,14 @@ Source5:	http://download.geany.org/contrib/tags/dbus-glib-0.76.c.tags
 Source6:	http://download.geany.org/contrib/tags/geany-api-0.18.c.tags
 Source7:	http://download.geany.org/contrib/tags/standard.css.tags
 Source8:	http://download.geany.org/contrib/tags/std.vala.tags
+# Russian help source. You may create another similar file for you language
 Source9: 	index.html
 Source10: 	images.tar.bz2
+# Replace default setup for FreeBasic on MS QB compatable and complex Haskell 
+# on simple Hugs98
 Patch0:		001_geany_qb_fb.patch
 Patch1:		002_geany_hugs98.patch
+# Russian doc patch
 Patch2:		ru_doc.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pkgconfig
@@ -46,6 +50,7 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 
 %prep
 %setup -q
+# For future reason add edm distepoch  You may recreate packets set edm to 0
 %if %edm
 %patch0 -p0
 %patch1 -p0
