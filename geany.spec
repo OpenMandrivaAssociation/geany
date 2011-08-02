@@ -1,7 +1,7 @@
 %define name 	geany
 %define cname	Geany
 %define version	0.20
-%define release	3
+%define release	4
 #for educational needs
 %define edm 1
 
@@ -31,6 +31,7 @@ Patch0:		001_geany_qb_fb.patch
 Patch1:		002_geany_hugs98.patch
 # Russian doc patch
 Patch2:		ru_doc.patch
+Patch3:		ru_compile_typo.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pkgconfig
 BuildRequires:  gtk2-devel
@@ -56,6 +57,7 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 %patch1 -p0
 %endif
 %patch2 -p1
+%patch3 -p0
 
 %build
 %configure2_5x
