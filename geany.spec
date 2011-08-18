@@ -1,7 +1,7 @@
 %define name 	geany
 %define cname	Geany
 %define version	0.20
-%define release	4
+%define release	5
 #for educational needs
 %define edm 1
 
@@ -32,6 +32,7 @@ Patch1:		002_geany_hugs98.patch
 # Russian doc patch
 Patch2:		ru_doc.patch
 Patch3:		ru_compile_typo.patch
+Patch4:		geany-0.20-mdvconf.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  pkgconfig
 BuildRequires:  gtk2-devel
@@ -39,8 +40,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
 BuildRequires:  perl-XML-Parser
 BuildRequires:  intltool
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
+Requires:	lxterminal
 Suggests:	geany-plugins
 
 %description
@@ -58,6 +58,7 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 %endif
 %patch2 -p1
 %patch3 -p0
+%patch4 -p1
 
 %build
 %configure2_5x
@@ -95,18 +96,6 @@ rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%if %mdkversion < 200900
-%post
-%{update_desktop_database}
-%{update_menus}
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_desktop_database}
-%{clean_menus}
-%endif
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
