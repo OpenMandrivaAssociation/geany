@@ -1,7 +1,7 @@
 %define name 	geany
 %define cname	Geany
 %define version	0.20
-%define release	5
+%define release	6
 #for educational needs
 %define edm 1
 
@@ -40,7 +40,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
 BuildRequires:  perl-XML-Parser
 BuildRequires:  intltool
-Requires:	lxterminal
 Suggests:	geany-plugins
 
 %description
