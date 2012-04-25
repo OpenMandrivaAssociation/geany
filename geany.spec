@@ -59,7 +59,7 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 
 %build
 %configure2_5x
-%make
+%make LIBS='-lgmodule-2.0'
 
 %install
 %makeinstall
