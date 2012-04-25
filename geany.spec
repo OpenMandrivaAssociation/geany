@@ -1,14 +1,10 @@
-%define name 	geany
-%define cname	Geany
-%define version	0.20
-%define release	7
 #for educational needs
-%define edm 1
+%define edm	1
 
 Summary:	Small C editor using GTK2
-Name: 		%{name}
-Version: 	%{version}
-Release: 	%mkrel %{release}
+Name: 		geany
+Version: 	0.20
+Release: 	8
 License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
@@ -33,15 +29,16 @@ Patch1:		002_geany_hugs98.patch
 Patch2:		ru_doc.patch
 Patch3:		ru_compile_typo.patch
 Patch4:		geany-0.20-mdvconf.patch
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires:  pkgconfig
-BuildRequires:  gtk2-devel
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
-BuildRequires:  perl-XML-Parser
 BuildRequires:  intltool
 BuildRequires:	lxterminal
+BuildRequires:  perl-XML-Parser
+BuildRequires:  pkgconfig(gtk+-2.0)
+
 Suggests:	geany-plugins
+%define __noautoreq 'pkgconfig\\(gtk+-2.0\\)' pkgconfig
 
 %description
 Geany is a small C editor using GTK2 with basic features of an
@@ -52,7 +49,7 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 %prep
 %setup -q
 # For future reason add edm distepoch  You may recreate packets set edm to 0
-%if %edm
+%if %{edm}
 %patch0 -p0
 %patch1 -p0
 %endif
@@ -65,16 +62,15 @@ Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %makeinstall
+find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 #Fix for Russian
-
-sed 's/Name\[ru\]=Geany/Name\[ru\]=Среда разработки Geany/g' -i %buildroot%{_datadir}/applications/geany.desktop
-mkdir -p  %buildroot%_defaultdocdir/%name/html/ru/
-install -Dpm 0644 %SOURCE9 %buildroot%_defaultdocdir/%name/html/ru/
+sed 's/Name\[ru\]=Geany/Name\[ru\]=Среда разработки Geany/g' -i %{buildroot}%{_datadir}/applications/geany.desktop
+mkdir -p  %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
+install -Dpm 0644 %{SOURCE9} %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
 tar -xjvf %SOURCE10
-mv images %buildroot%_defaultdocdir/%name/html/ru/
+mv images %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
 
 # research locale file
 %find_lang %{name}
@@ -86,19 +82,15 @@ desktop-file-install --vendor="" \
 	--add-category="GNOME" \
 	--remove-key="Version" \
 	--remove-key="Encoding" \
-	--dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+	--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 # Install tags files
-install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} $RPM_BUILD_ROOT%{_datadir}/%{name}
+install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{buildroot}%{_datadir}/%{name}
 
 # remove useless file
 rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %{_bindir}/%{name}
 %{_includedir}/%{name}
 %{_libdir}/%{name}
@@ -108,3 +100,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_defaultdocdir}/%{name}
 %{_mandir}/man1/%{name}.*
 %{_iconsdir}/hicolor/*/apps/*
+
