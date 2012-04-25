@@ -38,13 +38,21 @@ BuildRequires:  perl-XML-Parser
 BuildRequires:  pkgconfig(gtk+-2.0)
 
 Suggests:	geany-plugins
-%define __noautoreq 'pkgconfig\\(gtk+-2.0\\)' pkgconfig
 
 %description
 Geany is a small C editor using GTK2 with basic features of an
 integrated development environment. It features syntax highlighting,
 code completion, call tips, many supported filetypes (including C,
 Java, PHP, HTML, DocBook, Perl, LateX, and Bash), and symbol lists.
+
+%package devel
+Summary:	Header files for building Geany plug-ins
+Group:		Development/Other
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files and pkg-config file needed for
+building Geany plug-ins. You do not need to install this package
 
 %prep
 %setup -q
@@ -88,16 +96,18 @@ desktop-file-install --vendor="" \
 install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{buildroot}%{_datadir}/%{name}
 
 # remove useless file
-rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
+#rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
 
 %files -f %{name}.lang
 %{_bindir}/%{name}
-%{_includedir}/%{name}
 %{_libdir}/%{name}
-%{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}
 %{_defaultdocdir}/%{name}
-%{_mandir}/man1/%{name}.*
 %{_iconsdir}/hicolor/*/apps/*
+%{_mandir}/man1/%{name}.*
+
+%files devel
+%{_includedir}/%{name}
+%{_libdir}/pkgconfig/%{name}.pc
 
