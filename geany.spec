@@ -1,10 +1,7 @@
-#for educational needs
-%define edm	1
-
 Summary:	Small C editor using GTK2
 Name: 		geany
-Version: 	0.20
-Release: 	8
+Version: 	1.22
+Release: 	1
 License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
@@ -21,19 +18,12 @@ Source8:	http://download.geany.org/contrib/tags/std.vala.tags
 # Russian help source. You may create another similar file for you language
 Source9: 	index.html
 Source10: 	images.tar.bz2
-# Replace default setup for FreeBasic on MS QB compatable and complex Haskell 
-# on simple Hugs98
-Patch0:		001_geany_qb_fb.patch
-Patch1:		002_geany_hugs98.patch
 # Russian doc patch
 Patch2:		ru_doc.patch
-Patch3:		ru_compile_typo.patch
-Patch4:		geany-0.20-mdvconf.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
 BuildRequires:  intltool
-BuildRequires:	lxterminal
 BuildRequires:  perl-XML-Parser
 BuildRequires:  pkgconfig(gtk+-2.0)
 
@@ -57,13 +47,7 @@ building Geany plug-ins. You do not need to install this package
 %prep
 %setup -q
 # For future reason add edm distepoch  You may recreate packets set edm to 0
-%if %{edm}
-%patch0 -p0
-%patch1 -p0
-%endif
 %patch2 -p1
-%patch3 -p0
-%patch4 -p1
 
 %build
 %configure2_5x
@@ -74,7 +58,6 @@ building Geany plug-ins. You do not need to install this package
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 #Fix for Russian
-sed 's/Name\[ru\]=Geany/Name\[ru\]=Среда разработки Geany/g' -i %{buildroot}%{_datadir}/applications/geany.desktop
 mkdir -p  %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
 install -Dpm 0644 %{SOURCE9} %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
 tar -xjvf %SOURCE10
@@ -96,7 +79,7 @@ desktop-file-install --vendor="" \
 install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{buildroot}%{_datadir}/%{name}
 
 # remove useless file
-#rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
+rm %{buildroot}%{_iconsdir}/hicolor/icon-theme.cache
 
 %files -f %{name}.lang
 %{_bindir}/%{name}
