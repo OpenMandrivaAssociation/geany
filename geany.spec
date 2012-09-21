@@ -79,7 +79,7 @@ desktop-file-install --vendor="" \
 install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{buildroot}%{_datadir}/%{name}
 
 # remove useless file
-rm %{buildroot}%{_iconsdir}/hicolor/icon-theme.cache
+rm -f %{buildroot}%{_iconsdir}/hicolor/icon-theme.cache
 
 %files -f %{name}.lang
 %{_bindir}/%{name}
