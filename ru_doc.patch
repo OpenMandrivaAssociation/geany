@@ -1,0 +1,15 @@
+--- geany/doc/geany.html.orig	2010-06-04 20:34:15 +0400
++++ geany/doc/geany.html	2010-07-01 13:40:09 +0400
+@@ -127,6 +127,12 @@
+ </style>
+ </head>
+ <body>
++<center>
++<br>
++<nobr>
++<a href='index.html'>Eng</a> <a href='ru/index.html'>Рус</a>
++</nobr>
++</center>
+ <div class="document" id="geany">
+ <h1 class="title">Geany</h1>
+ <h2 class="subtitle" id="a-fast-light-gtk-ide">A fast, light, GTK+ IDE</h2>
