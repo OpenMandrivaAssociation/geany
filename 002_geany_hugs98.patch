@@ -1,0 +1,10 @@
+--- data/filetypes.haskell.old	2010-08-17 18:13:32.000000000 +0400
++++ data/filetypes.haskell	2009-06-27 00:42:00.000000000 +0400
+@@ -50,5 +50,5 @@
+ # %f will be replaced by the complete filename
+ # %e will be replaced by the filename without extension
+ # (use only one of it at one time)
+-compiler=ghc --make "%f"
+-run_cmd="./%e"
++compiler=hugs "%f"
++run_cmd=hugs "%f"

@@ -1,0 +1,20 @@
+--- po/ru.po.old	2011-05-29 00:51:07.000000000 +0400
++++ po/ru.po	2011-08-02 09:53:01.203439704 +0400
+@@ -8,7 +8,7 @@
+ "Project-Id-Version: Geany 0.19\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2010-12-05 15:55+0100\n"
+-"PO-Revision-Date: 2011-05-29 00:51+0300\n"
++"PO-Revision-Date: 2011-08-02 09:53+0300\n"
+ "Last-Translator: Alexander Kazancev <kazancas@mandriva.ru>\n"
+ "Language-Team: Russian <ru@li.org>\n"
+ "Language: ru\n"
+@@ -1113,7 +1113,7 @@
+ 
+ #: ../src/geany.h:52
+ msgid "untitled"
+-msgstr "Без имени"
++msgstr "nezadano"
+ 
+ #: ../src/highlighting.c:3595
+ #: ../src/main.c:814
