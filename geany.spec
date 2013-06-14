@@ -3,8 +3,8 @@
 
 Summary:	Small C editor using GTK2
 Name: 		geany
-Version: 	0.20
-Release: 	8
+Version: 	1.23
+Release: 	1
 License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
@@ -27,8 +27,8 @@ Patch0:		001_geany_qb_fb.patch
 Patch1:		002_geany_hugs98.patch
 # Russian doc patch
 Patch2:		ru_doc.patch
-Patch3:		ru_compile_typo.patch
-Patch4:		geany-0.20-mdvconf.patch
+# Patch3:		ru_compile_typo.patch
+Patch4:		geany-1.23-rosaconf.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
@@ -62,7 +62,7 @@ building Geany plug-ins. You do not need to install this package
 %patch1 -p0
 %endif
 %patch2 -p1
-%patch3 -p0
+# %patch3 -p0
 %patch4 -p1
 
 %build
@@ -96,7 +96,8 @@ desktop-file-install --vendor="" \
 install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{buildroot}%{_datadir}/%{name}
 
 # remove useless file
-#rm %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
+rm -f %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
+rm -f %{buildroot}%{_datadir}/icons/Tango/icon-theme.cache
 
 %files -f %{name}.lang
 %{_bindir}/%{name}
@@ -105,6 +106,8 @@ install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{S
 %{_datadir}/%{name}
 %{_defaultdocdir}/%{name}
 %{_iconsdir}/hicolor/*/apps/*
+%{_iconsdir}/hicolor/*/actions/*
+%{_iconsdir}/Tango/*/actions/*
 %{_mandir}/man1/%{name}.*
 
 %files devel

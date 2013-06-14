@@ -1,10 +1,10 @@
---- geany-0.20/src/keyfile.c.old	2010-12-07 16:16:57.000000000 +0300
-+++ geany-0.20/src/keyfile.c	2011-08-18 11:55:02.593305548 +0400
-@@ -72,15 +72,15 @@
+--- geany-1.23/src/keyfile.c.orig	2013-06-14 14:52:48.442473613 +0400
++++ geany-1.23/src/keyfile.c	2013-06-14 14:53:28.866469739 +0400
+@@ -71,15 +71,15 @@
  #ifdef G_OS_WIN32
- #define GEANY_DEFAULT_TOOLS_TERMINAL	"cmd.exe"
+ #define GEANY_DEFAULT_TOOLS_TERMINAL	"cmd.exe /Q /C %c"
  #else
--#define GEANY_DEFAULT_TOOLS_TERMINAL	"xterm"
+-#define GEANY_DEFAULT_TOOLS_TERMINAL	"xterm -e \"/bin/sh %c\""
 +#define GEANY_DEFAULT_TOOLS_TERMINAL	"lxterminal"
  #endif
  #define GEANY_DEFAULT_TOOLS_BROWSER		"firefox"
@@ -19,4 +19,4 @@
 +#define GEANY_DEFAULT_FONT_EDITOR		"Droid Sans Mono 10"
  #define GEANY_TOGGLE_MARK				"~ "
  #define GEANY_MAX_AUTOCOMPLETE_WORDS	30
- 
+ #define GEANY_MAX_SYMBOLS_UPDATE_FREQ	250
