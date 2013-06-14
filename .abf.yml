@@ -1,5 +1,6 @@
 removed_sources:
   geany-0.20.tar.bz2: 5f14a807655f1ebe2e14b3fe464e7349ba005017
-sources:
   geany-1.23.tar.bz2: 13d74d0bd3d0fc01fd0aae6d3526b055185db4ee
+sources:
+  geany-1.23.1.tar.bz2: 46d54f5ef50cfa5c3e2f7ee819b65ce5276baefa
   images.tar.bz2: 29b3a7642ab981e4846d20079c7df3266eea6dc5
