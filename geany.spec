@@ -21,6 +21,7 @@ Source8:	http://download.geany.org/contrib/tags/std.vala.tags
 # Russian help source. You may create another similar file for you language
 Source9: 	index.html
 Source10: 	images.tar.bz2
+Source100:	%{name}.rpmlintrc
 # Replace default setup for FreeBasic on MS QB compatable and complex Haskell 
 # on simple Hugs98
 Patch0:		001_geany_qb_fb.patch
