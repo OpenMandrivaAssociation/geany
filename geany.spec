@@ -4,7 +4,7 @@
 Summary:	Small C editor using GTK2
 Name: 		geany
 Version: 	1.24.1
-Release: 	1
+Release: 	2
 License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
