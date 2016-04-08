@@ -3,8 +3,8 @@
 
 Summary:	Small C editor using GTK2
 Name: 		geany
-Version: 	1.24.1
-Release: 	2
+Version: 	1.27
+Release: 	1
 License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
@@ -25,16 +25,12 @@ Source100:	%{name}.rpmlintrc
 # Replace default setup for FreeBasic on MS QB compatable and complex Haskell 
 # on simple Hugs98
 Patch0:		001_geany_qb_fb.patch
-Patch1:		002_geany_hugs98.patch
 # Russian doc patch
 Patch2:		ru_doc.patch
-# Patch3:		ru_compile_typo.patch
-Patch4:		geany-1.23-rosaconf.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
 BuildRequires:  intltool
-BuildRequires:	lxterminal
 BuildRequires:  perl-XML-Parser
 BuildRequires:  pkgconfig(gtk+-2.0)
 
@@ -60,11 +56,8 @@ building Geany plug-ins. You do not need to install this package
 # For future reason add edm distepoch  You may recreate packets set edm to 0
 %if %{edm}
 %patch0 -p0
-%patch1 -p0
 %endif
 %patch2 -p1
-# %patch3 -p0
-%patch4 -p1
 
 %build
 %configure2_5x
@@ -100,6 +93,8 @@ install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{S
 rm -f %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
 rm -f %{buildroot}%{_datadir}/icons/Tango/icon-theme.cache
 
+%libpackage geany 0
+
 %files -f %{name}.lang
 %{_bindir}/%{name}
 %{_libdir}/%{name}
@@ -114,6 +109,7 @@ rm -f %{buildroot}%{_datadir}/icons/Tango/icon-theme.cache
 %files devel
 %{_includedir}/%{name}
 %{_libdir}/pkgconfig/%{name}.pc
+%{_libdir}/libgeany.so
 
 
 
