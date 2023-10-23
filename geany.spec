@@ -3,36 +3,19 @@
 
 Summary:	Small C editor using GTK2
 Name: 		geany
-Version: 	1.27
+Version: 	2.0
 Release: 	1
 License: 	GPLv2+
 Group: 		Development/C
 URL: 		http://geany.uvena.de/
 Source0: 	http://download.geany.org/%{name}-%{version}.tar.bz2
-# The following tags files were retrieved 17 Aug 2009
-Source1:	http://download.geany.org/contrib/tags/sqlite3.c.tags
-Source2:	http://download.geany.org/contrib/tags/std.glsl.tags
-Source3:	http://download.geany.org/contrib/tags/gtk216.c.tags
-Source4:	http://download.geany.org/contrib/tags/xfce46.c.tags
-Source5:	http://download.geany.org/contrib/tags/dbus-glib-0.76.c.tags
-Source6:	http://download.geany.org/contrib/tags/geany-api-0.18.c.tags
-Source7:	http://download.geany.org/contrib/tags/standard.css.tags
-Source8:	http://download.geany.org/contrib/tags/std.vala.tags
-# Russian help source. You may create another similar file for you language
-Source9: 	index.html
-Source10: 	images.tar.bz2
-Source100:	%{name}.rpmlintrc
-# Replace default setup for FreeBasic on MS QB compatable and complex Haskell 
-# on simple Hugs98
-Patch0:		001_geany_qb_fb.patch
-# Russian doc patch
-Patch2:		ru_doc.patch
 
+BuildRequires:	meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
 BuildRequires:  intltool
 BuildRequires:  perl-XML-Parser
-BuildRequires:  pkgconfig(gtk+-2.0)
+BuildRequires:  pkgconfig(gtk+-3.0)
 
 Suggests:	geany-plugins
 
@@ -52,27 +35,15 @@ This package contains the header files and pkg-config file needed for
 building Geany plug-ins. You do not need to install this package
 
 %prep
-%setup -q
-# For future reason add edm distepoch  You may recreate packets set edm to 0
-%if %{edm}
-%patch0 -p0
-%endif
-%patch2 -p1
+%autosetup -p1
 
 %build
-%configure2_5x
-%make LIBS='-lgmodule-2.0'
+%meson
+%meson_build
 
 %install
-%makeinstall
+%meson_install
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
-
-#Fix for Russian
-sed 's/Name\[ru\]=Geany/Name\[ru\]=Среда разработки Geany/g' -i %{buildroot}%{_datadir}/applications/geany.desktop
-mkdir -p  %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
-install -Dpm 0644 %{SOURCE9} %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
-tar -xjvf %SOURCE10
-mv images %{buildroot}%{_defaultdocdir}/%{name}/html/ru/
 
 # research locale file
 %find_lang %{name}
@@ -85,9 +56,6 @@ desktop-file-install --vendor="" \
 	--remove-key="Version" \
 	--remove-key="Encoding" \
 	--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
-
-# Install tags files
-install -p %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{buildroot}%{_datadir}/%{name}
 
 # remove useless file
 rm -f %{buildroot}%{_datadir}/icons/hicolor/icon-theme.cache
