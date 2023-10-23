@@ -10,7 +10,6 @@ Group: 		Development/C
 URL: 		http://geany.uvena.de/
 Source0: 	http://download.geany.org/%{name}-%{version}.tar.bz2
 
-BuildRequires:	meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
 BuildRequires:  intltool
@@ -38,11 +37,11 @@ building Geany plug-ins. You do not need to install this package
 %autosetup -p1
 
 %build
-%meson
-%meson_build
+%configure
+%make LIBS='-lgmodule-2.0'
 
 %install
-%meson_install
+%make_install
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 # research locale file
