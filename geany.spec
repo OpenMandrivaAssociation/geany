@@ -7,7 +7,7 @@ Version: 	2.0
 Release: 	1
 License: 	GPLv2+
 Group: 		Development/C
-URL: 		http://geany.uvena.de/
+URL: 		https://geany.uvena.de/
 Source0: 	http://download.geany.org/%{name}-%{version}.tar.bz2
 
 BuildRequires:  desktop-file-utils
