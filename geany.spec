@@ -3,7 +3,7 @@
 
 Summary:	Small C editor using GTK2
 Name: 		geany
-Version: 	2.0
+Version: 	2.1
 Release: 	1
 License: 	GPLv2+
 Group: 		Development/C
