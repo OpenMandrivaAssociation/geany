@@ -10,6 +10,11 @@ Group: 		Development/C
 URL: 		https://geany.uvena.de/
 Source0: 	http://download.geany.org/%{name}-%{version}.tar.bz2
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
 BuildRequires:  intltool
